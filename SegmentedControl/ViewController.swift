@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var slider: UISlider!
     
     override func viewDidLoad() {
@@ -57,5 +58,26 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func enterPressed(_ sender: UIButton) {
+        
+        guard textField.text?.isEmpty == false else {return}
+        
+        if let _ = Double(textField.text!) {
+            let alert = UIAlertController(title: "Wrong format", message: "Please enter your name", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+            
+            print("Format is wrong")
+        } else {
+            label.text = textField.text
+            textField.text = nil
+        }
+        
+       // label.text = textField.text
+        
+        
+        
+    }
 }
 
